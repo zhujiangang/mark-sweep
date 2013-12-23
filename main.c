@@ -124,7 +124,7 @@ void gc(VM* vm) {
 Object* newObject(VM* vm, ObjectType type) {
   if (vm->numObjects == vm->maxObjects) gc(vm);
 
-  Object* object = malloc(sizeof(Object));
+  Object* object = (Object*)malloc(sizeof(Object));
   object->type = type;
   object->next = vm->firstObject;
   vm->firstObject = object;
@@ -191,7 +191,7 @@ void test2() {
 
 void test3() {
   printf("Test 3: Reach nested objects.\n");
-  VM* vm = newVM();
+  VM* vm = （VM*)newVM();
   pushInt(vm, 1);
   pushInt(vm, 2);
   pushPair(vm);
